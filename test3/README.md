@@ -125,16 +125,16 @@ class 图书信息{
 @startuml
 object 超级管理员信息{
     id：007
-    name:Tom
+    name:"Tom"
     number：23
-    adress：science and information college
+    adress："science and information college"
     phone：1241255262
 }
 object 普通管理员{
     id：0107
-    name:Cathelin
+    name:"Cathelin"
     number：23
-    adress：science_and_information_college
+    adress："science_and_information_college"
     phone：1255552622
 }
 object 读者{
