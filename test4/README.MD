@@ -101,7 +101,7 @@ manager -> reader : 借书成功
 
 actor 读者 as reader
 actor 管理员 as manager
-participant 借书系统 as system
+participant 还书系统 as system
 participant item
 database mysql
 
@@ -148,7 +148,7 @@ manager -> reader : 还书成功
 @startuml
 
 actor 读者 as reader
-participant 借书系统 as system
+participant 预定系统 as system
 participant item
 database mysql
 
