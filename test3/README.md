@@ -15,31 +15,33 @@ class 注册用户{
     +sex:String
     +role:String 
     +number:Interger
+    +select()
+    +update()
+    +delete()
+    +pay()
 }
 class 会员{
-    +name:String 
-    +age:Interger
-    +maxBorrowNum:Interger
-    +maxBorrowDays:date
-    +roletime:date
-}
-class 预定的记录{
-    +booktime:date
-    +add()
+    +id:String 
+    +readerId:String
+    +Name:String
+    +sex:String
+    +role:String
+    +number:integer
     +select()
+    +update()
+    +delete()
+    +pay()
 }
-class 借书记录{
-    +lendtime:date
-    +returntime:date
-    +add()
+class 借阅信息{
+    +borrowid:Interger
+    +bookid:char
+    +readerid:char
+    +borrowTime:datetime
     +select()
-}
-class 逾期记录{
-    +continueday:date
-    +lastday:date
-    +returntime:date
-    +add()
-    +select()
+    +update()
+    +delete()
+    +pay()
+    +bookTimeCheck()
 }
 class 超级管理员{
     +mangerId:Interger
@@ -62,6 +64,7 @@ class 管理员信息{
     +select()
     +delete()
     +update()
+    +pay()
 }
 class 读者信息{
     +readerId:Interger 
@@ -70,41 +73,34 @@ class 读者信息{
     +returnBookTime:String
     +select()
     +borrow()
-    +xujie()
-    +yujie()
-    +returnBook()
+    +addbook()
+    +feedback()
     +findBook()
 }
 class 图书信息{
     +bookId:Interger
-    + bookISBN:String
+    +bookISBN:String
     +bookName:String 
     +total:Interger 
-    +stock:Interger 
     +publisher:String 
     +author:String 
     +summary:String
-    +add()
+    +bookinfo()
     +select()
     +delete()
     +update()
-    +setStatus()
+    +feedback()
+    +pay()
 }
 
-读者信息  --*  预定的记录  :借阅
-读者信息 --> 借书记录:添加
-借书记录 --> 管理员信息:增加借阅信息
-借书记录 --> 逾期记录
-逾期记录 --> 管理员信息:处理
-预定的记录 --> 管理员信息 :增加预定记录
-管理员信息  --*  图书信息 :mange
-管理员信息  --*  读者信息  :mange
-超级管理员 "1" -- "多"管理员信息:contains
+借阅信息 -right-* 图书信息
+管理员信息  --|>  读者信息  :mange
+超级管理员  --*  管理员信息
+超级管理员 --|> 图书信息
 读者信息    <|--    注册用户
 读者信息    <|--    会员
-
+读者信息 <|-- 借阅信息
 @enduml
-
 
 ```
 ### 1.2类图
@@ -123,70 +119,65 @@ class 图书信息{
 ### 2.1源码
 ```
 @startuml
+
 object 超级管理员信息{
-    id：007
-    name:"Tom"
-    number：23
-    adress："science and information college"
-    phone：1241255262
+    mangerId：007
+    mangerName:"Tom"
+    mangerNumber：23
+    mangeraAdress："science and information college"
+    mangerPhone：1241255262
 }
 object 普通管理员{
-    id：0107
-    name:"Cathelin"
-    number：23
-    adress："science_and_information_college"
-    phone：1255552622
+    mangerId：0107
+    mangerName:"Cathelin"
+    mangerNumber：23
+    mangerAdress："science_and_information_college"
+    mangerPhone：1255552622
 }
 object 读者{
-    id:s111
-    role：a1
-    booknumber：654655162165
-    lendtime：18-05-01
+    readerId:s111
+    readerName:"Alice"
+    lendBooktime:18-5-1
     returntime：18-5-12
 }
 object 注册用户{
     id:b111
     name："小红"
-    time：18-5-2
+    sex:"fm"
     role：0
-    number：028-5689423
+    number 2
 }
 object 会员用户{
+    id:b222
     name："小李"
-    registtime：18-5-2
+    sex:"m"
     role：a1
-    nunber：028-5689423
-    maxBorrowNum：12
-    maxBorrowTime：10 "天"
+    nunber：20
 }
 object 借书记录{
-    lendtime：18-2-5
-}
-object 还书记录{
-    returntime：18-3-5
-}
-object 逾期记录{
-    maxBorrowTime：10 "天"
-    returntime：18-3-8
+    borrowid:003
+    bookid:a22
+    readerid:b111
+    borrowtime：18-2-5
 }
 object 图书信息{
     bookid:s12314
     bookName："《时间简史》"
     bookISBN：159-456-763-5612
-    author："奥斯特洛夫斯基"
+    author："史蒂芬·霍金"
     publisher："成都大学出版社"
-    ......
+    total:50
+    summary:"著名物理学家史提芬霍金所著"
 }
 超级管理员信息 --* 普通管理员:管理
-普通管理员 --* 图书信息
-普通管理员 --* 借书记录
-普通管理员 --* 还书记录
-普通管理员 --* 逾期记录
-普通管理员 --* 读者
-
-读者 *-- 注册用户
-读者 *-- 会员用户
+普通管理员 --|> 读者
+借书记录 -right-* 图书信息
+读者 <|-- 借书记录
+超级管理员信息 --|> 图书信息
+读者 <|-- 注册用户
+读者 <|-- 会员用户
 @enduml
+
 ```
 ### 2.2图片
 ![](./test3_2.png '描述')
@@ -198,6 +189,7 @@ object 图书信息{
 源码
 ```
 @startuml
+
 class MangeInfo{
     +mangerId:Interger
     +mangerName:String
@@ -232,7 +224,6 @@ class Book{
     +bookISBN:String
     +bookName:String 
     +total:Interger 
-    +stock:Interger 
     +publisher:String 
     +author:String 
     +summary:String
@@ -241,7 +232,6 @@ class Book{
     +getBookISBN()
     +getBookName()
     +getTotal()
-    +getStock()
     +getPublisher()
     +getAuthor()
     +getSummary()
@@ -250,7 +240,6 @@ class Book{
     +setBookISBN()
     +setBookName()
     +setTotal()
-    +setStock()
     +setPublisher()
     +setAuthor()
     +setSummary() 
@@ -270,19 +259,16 @@ class Book{
 class ReaderInfo{
     +readerId:Interger 
     +readerName:String 
-    +lendbookid:Interger
     +lendBookTime:String 
     +returnBookTime:String
     ..getter..
     +getReaderId()
     +getReaderName()
-    +getLendBookid()
     +getLendBookTime()
     +getReturnBookTime()
     ..setter..
     +setReaderId()
     +setReaderName()
-    +setLendBookid()
     +setLendBookTime()
     +setReturnBookTime() 
 }
