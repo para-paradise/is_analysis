@@ -1,0 +1,61 @@
+
+@startuml
+title 基于GitHub的实验管理平台--类图
+
+class users{
+    +user_id:int
+    +name:String
+    +gitbub_username:String
+    +update_date:date
+    +password:String
+    +disable:String
+}
+
+class teachers{
+    +teacher_id:String
+    +department:String
+}
+
+class students{
+    +student_id:String
+    +class:String
+    +result_sum:int
+    +web_sum:String
+    +college:String
+    +course_id:String 
+}
+
+users <|- students
+users <|-- teachers
+
+class grades{
+    +student_id:String
+    +test_id:int
+    +result:String
+    +memo:String
+    +update_date:date
+}
+
+class tests{
+    +test_id:int
+    +title:String
+    +summery:String
+    +update_date:date
+    +teacher_id:String
+    +course_id:String
+    +collage:String
+}
+
+students "1" -- "n"  grades
+tests "1" -- "n"  grades
+
+class courses{
+    +course_id:String
+    +course_name:String
+    +summery:String
+    +number:int
+    +teacher_id:String
+    +collage:String
+}
+students "1" -- "n"  courses
+@enduml
