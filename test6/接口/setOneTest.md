@@ -22,15 +22,15 @@
 请求实例：  
         { 
 			
-			collage_name：“信息科学工程与技术学院”
-			course_name:"java"
+			collage_name：“信息科学工程与技术学院”,
+			course_name:"java",
             "data": [
                 {
                 "test_id":#3,
-                "test_name":"类的继承1"
-				"summery": "本次实验简单认识。。。", 
+                "test_name":"类的继承1",
+				"summery": "本次实验简单认识。。。",
 				"updata_date": "2018.5.22",
-				"teacher_name":"黄老师" 
+				"teacher_name":"黄老师" ,
 			]
         }
 

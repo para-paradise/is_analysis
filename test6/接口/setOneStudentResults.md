@@ -22,8 +22,8 @@
  
 - 请求实例：  
         { 
-            "collage_name":"信息科学与工程学院--软件工程"  
-            "course_name":"java"
+            "collage_name":"信息科学与工程学院--软件工程"  ,
+            "course_name":"java",
             "student_id": "201510315203", 
             "total": 6,
             "data": [

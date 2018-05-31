@@ -32,8 +32,8 @@
         {         
             "status": true,
             "info": null，
-            collage_name：“信息科学工程与技术学院”
-			course_name:"java"
+            collage_name：“信息科学工程与技术学院”,
+			course_name:"java",
             "data": [
                 {
                 "test_id":#3,
