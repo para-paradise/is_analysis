@@ -1,0 +1,8 @@
+@startuml
+actor students
+
+students -> collages: 选择院系专业
+collages -> courses:选择课程
+courses ->  students:该学生的院系专业课程的信息
+
+@enduml

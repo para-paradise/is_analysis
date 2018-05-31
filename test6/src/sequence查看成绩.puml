@@ -1,0 +1,8 @@
+@startuml
+actor students
+students -> collage: 选择院系专业
+collage -> course: 选择课程
+course-> grades: 查看成绩和评语
+grades -> tests
+tests --> students:该学生院系专业课程的每个实验的信息、成绩和评语
+@enduml

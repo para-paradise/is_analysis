@@ -1,0 +1,9 @@
+@startuml
+actor students
+
+students -> collages: 选择院系专业
+collages -> courses:选择课程
+courses -> tests
+tests --> students:该学生的院系专业课程的每个实验的信息
+
+@enduml

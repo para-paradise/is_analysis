@@ -1,0 +1,13 @@
+@startuml
+actor teachers
+== 查看成绩 ==
+teachers -> collages: 选择院系专业
+collages -> courses:选择课程
+courses -> grades
+grades -> tests
+tests --> teachers:该学生的院系专业课程的每个实验的信息、成绩和评语
+== 评定成绩 ==
+teachers -> collages: 选择院系专业
+collages -> courses:选择课程
+courses -> grades : 录入并提交每个实验的成绩
+@enduml

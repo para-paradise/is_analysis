@@ -1,0 +1,10 @@
+@startuml
+actor teachers
+== 查看课程 ==
+teachers -> collages: 选择院系专业
+collages -> courses:选择课程
+courses ->  teachers:该学生的院系专业课程的信息
+== 发布课程 ==
+teachers -> collages: 选择院系专业
+collages -> courses:录入课程信息
+@enduml

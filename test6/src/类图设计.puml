@@ -9,6 +9,11 @@ class users{
     +update_date:date
     +password:String
     +disable:String
+    +getUserInfo()
+    +setUserInfo()
+    +setPassword()
+    +getPassword()
+    
 }
 
 class teachers{
@@ -21,8 +26,10 @@ class students{
     +class:String
     +result_sum:int
     +web_sum:String
-    +college:String
-    +course_id:String 
+    +collage_name:String
+    +course_name:String
+    +getStudents()
+    +setStudents() 
 }
 
 users <|- students
@@ -31,9 +38,12 @@ users <|-- teachers
 class grades{
     +student_id:String
     +test_id:int
+    +standard:String
     +result:String
     +memo:String
     +update_date:date
+    +setGrades()
+    +getGrades()
 }
 
 class tests{
@@ -41,9 +51,11 @@ class tests{
     +title:String
     +summery:String
     +update_date:date
-    +teacher_id:String
-    +course_id:String
-    +collage:String
+    +teacher_name:String
+    +course_name:String
+    +collage_name:String
+    +getTests()
+    +setTests()
 }
 
 students "1" -- "n"  grades
@@ -54,8 +66,21 @@ class courses{
     +course_name:String
     +summery:String
     +number:int
-    +teacher_id:String
-    +collage:String
+    +teacher_name:String
+    +collage_name:String
+    +getCourses()
+    +setCourses()
+}
+
+class collage{
+    +collage_id:String
+    +collage_name:String
+    +student_id:String
+    +student_name:String
+    +number:int
+    +getCollage()
+    +setCollage()
 }
 students "1" -- "n"  courses
+collage "1" -- "n" students
 @enduml
